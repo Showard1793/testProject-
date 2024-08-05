@@ -1,3 +1,9 @@
-test('adds 1 + 2 to equal 3', () => {
+describe("This is a sample test suite", ()=> {
+  
+  test('adds 1 + 2 to equal 3', () => {
     expect(1 + 2).toBe(3);
   });
+  
+})
+
+
