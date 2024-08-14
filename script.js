@@ -1,37 +1,33 @@
-window.addEventListener("load", () => {
+// RUN FORM SUBMISSION AND PLANET TRAVEL +++
+window.addEventListener("load", function() {
+    const form = document.querySelector("form");
+    
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-//CONVERT HTML ELEMENTS TO JAVASCRIPT VARIABLES
-const mainText = document.getElementById("main-text")
-const doorBell = document.getElementById("doorbell-button")
-const erase = document.getElementById("erase-button")
+    // Get values from the form +++
+        let pilotName = document.querySelector("input[name='pilotName']").value;
+        let copilotName = document.querySelector("input[name='copilotName']").value;
+        let fuelLevel = document.querySelector("input[name='fuelLevel']").value;
+        let cargoMass = document.querySelector("input[name='cargoMass']").value;
 
-//ADD FUNCTIONS FOR EVENTS
-doorBell.addEventListener("click", ()=>{
-    mainText.innerHTML += " you rang..."
-})
-
-erase.addEventListener("click", ()=>{
-    mainText.innerHTML = "Ring the doorbell...if you dare!"
-})
-
-erase.addEventListener("mouseover", ()=>{
-    erase.style.backgroundColor = "red"
-})
-
-erase.addEventListener("mouseleave", ()=>{
-    erase.style.backgroundColor = ""
-})
-
+    // Call formSubmission with these values
+        formSubmission(document, pilotName, copilotName, fuelLevel, cargoMass);
+              
+    //Display Random Planet Data
+        (async function() {
+            const planets = await myFetch();
+            const selectedPlanet = pickPlanet(planets);
+            
+            addDestinationInfo(
+                document,
+                selectedPlanet.name,
+                selectedPlanet.diameter,
+                selectedPlanet.star,
+                selectedPlanet.distance,
+                selectedPlanet.moons,
+                selectedPlanet.image
+            );
+        })();
 });
-
-
-
-
-
-
-
-
-
-//git remote add origin https://github.com/Showard1793/testProject.git
-//git branch -M main
-//git push -u origin main
+});
